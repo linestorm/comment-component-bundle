@@ -1,14 +1,15 @@
 parameters:
   linestorm.content.component.comment.class: LineStorm\CommentComponentBundle\Component\CommentComponent
+  linestorm.cms.module.comment.class:        LineStorm\CommentComponentBundle\Module\CommentModule
 
 services:
+
+  linestorm.cms.module.comment:
+    class: %linestorm.cms.module.comment.class%
+    tags:
+      - { name: linestorm.cms.module }
+
   linestorm.content.component.comment:
     class: %linestorm.content.component.comment.class%
     tags:
       - { name: linestorm.content.component }
-
-#  linestorm.content.component.article.form:
-#        class: LineStorm\ArticleComponentBundle\Form\ArticleType
-#        arguments: [@linestorm.cms.model_manager]
-#        tags:
-#            - { name: form.type, alias: linestorm_component_article }

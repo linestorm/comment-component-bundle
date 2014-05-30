@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  *
  * Class CommentComponent
  *
- * @package LineStorm\ArticleComponentBundle\Component
+ * @package LineStorm\CommentComponentBundle\Component
  */
 class CommentComponent extends AbstractFooterComponent implements ComponentInterface
 {
@@ -53,7 +53,7 @@ class CommentComponent extends AbstractFooterComponent implements ComponentInter
     public function getAssets()
     {
         return array(
-            '@LineStormCommentComponentBundle/Resources/public/js/comment.js'
+            '@LineStormCommentBundle/Resources/public/js/comment.js'
         );
     }
 

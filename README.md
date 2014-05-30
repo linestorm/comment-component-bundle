@@ -13,7 +13,6 @@ This module will provide functionality to comment on content nodes within LineSt
 3. Configure the Bundle
 4. Installing Assets
 5. Configuring Assets
-5. Configuring Content Nodes
 
 Step 1: Download bundle using composer
 --------------------------------------
@@ -49,6 +48,15 @@ is local_storeage
 line_storm_comment_component: ~
 ```
 
+You will also need to override the LineStormCommentBundle:Comment:script.html.twig template with the requirejs script:
+```twig
+{{
+    include('LineStormCmsBundle::requirejs.html.twig', {
+        requirejs_module: ['app/main', 'cms_comment']
+    })
+}}
+```
+
 Step 4: Installing Assets
 -------------------------
 
@@ -71,52 +79,8 @@ requirejs.config({
         // ...
 
         // cms comment library
-        cms_comment:        '/path/to/bundles/linestormcomment/js/comment',
+        cms_comment:        '/path/to/bundles/linestormcommentcomponent/js/comment',
+        linestorm_comment:  '/path/to/bundles/linestormcomment/js/comment',
     }
 });
-```
-
-Step 6: Content Nodes
----------------------
-
-In order to configures settings at a content node level, you need to add 2 fields to the content node class:
-
-```php
-
-    protected $commentsEnabled;
-
-    protected $commentsAnonymous;
-
-    /**
-     * @param boolean $commentsAnonymous
-     */
-    public function setCommentsAnonymous($commentsAnonymous)
-    {
-        $this->commentsAnonymous = $commentsAnonymous;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getCommentsAnonymous()
-    {
-        return $this->commentsAnonymous;
-    }
-
-    /**
-     * @param boolean $commentsEnabled
-     */
-    public function setCommentsEnabled($commentsEnabled)
-    {
-        $this->commentsEnabled = $commentsEnabled;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getCommentsEnabled()
-    {
-        return $this->commentsEnabled;
-    }
-
 ```
